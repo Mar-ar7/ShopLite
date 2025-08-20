@@ -1,5 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!doctype html>
 <html lang="es">
 <head>
@@ -25,11 +26,11 @@
             <form method="post" action="${pageContext.request.contextPath}/auth/login" class="row g-3">
                 <div class="col-12">
                     <label class="form-label">Email</label>
-                    <input class="form-control" name="email" value="admin@demo.com" required>
+                    <input class="form-control" name="username" value="" required>
                 </div>
                 <div class="col-12">
                     <label class="form-label">Contraseña</label>
-                    <input class="form-control" type="password" name="password" value="admin123" required>
+                    <input class="form-control" type="password" name="password" value="" required>
                 </div>
                 <div class="col-12 d-flex gap-2">
                     <button class="btn btn-primary">Entrar</button>
