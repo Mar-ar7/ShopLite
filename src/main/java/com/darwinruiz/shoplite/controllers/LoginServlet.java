@@ -17,28 +17,27 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String email = req.getParameter("email");
-        String pass = req.getParameter("password");
 
-        Optional<User> u = users.findByEmail(email);
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
 
-        if (u.isEmpty() || !u.get().getPassword().equals(pass)) {
+        Optional<User> u = users.findByUsername(username);
+
+        if (u.isEmpty() || !u.get().getPassword().equals(password)) {
             resp.sendRedirect(req.getContextPath() + "/login.jsp?err=1");
             return;
         }
 
-        // Cerrar sesión previa si existe
         HttpSession oldSession = req.getSession(false);
         if (oldSession != null) {
             oldSession.invalidate();
         }
 
-        // Crear nueva sesión
         HttpSession session = req.getSession(true);
         session.setAttribute("auth", true);
-        session.setAttribute("userEmail", u.get().getEmail());
+        session.setAttribute("userUsername", u.get().getUsername());
         session.setAttribute("role", u.get().getRole());
-        session.setMaxInactiveInterval(30 * 60); // 30 minutos
+        session.setMaxInactiveInterval(30 * 60);
 
         resp.sendRedirect(req.getContextPath() + "/home");
     }
