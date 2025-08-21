@@ -7,7 +7,8 @@ import java.sql.SQLException;
 public class DbConnection {
     private static DbConnection instance;
     private Connection connection;
-    private final String URL = "jdbc:postgresql://localhost:5433/postgres";
+
+    private final String URL = "jdbc:postgresql://localhost:5432/shoplite"; // <-- cambia 'shoplite' por el nombre real de tu BD
     private final String USER = "postgres";
     private final String PASSWORD = "admin123";
 
